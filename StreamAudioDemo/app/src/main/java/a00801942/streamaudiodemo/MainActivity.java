@@ -2,6 +2,7 @@ package a00801942.streamaudiodemo;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
 
     private MediaPlayer mPlayer;
     private String url = "http://programmerguru.com/android-tutorial/wp-content/uploads/2013/04/hosannatelugu.mp3";
+    private Uri uri = Uri.parse("file:///sdcard/Music/Saxophonic/01 Honey-Dipped.mp3");
 
     private Button btnPlay;
     private Button btnStop;
@@ -30,9 +32,10 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 mPlayer = new MediaPlayer();
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                // mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 try {
-                    mPlayer.setDataSource(url);
+                    mPlayer.setDataSource(getApplicationContext(), uri);
+                    // mPlayer.setDataSource(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
