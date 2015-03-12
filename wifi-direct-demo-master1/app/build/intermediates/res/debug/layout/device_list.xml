@@ -78,4 +78,4 @@
         android:layout_height="match_parent"
         android:text="@string/empty_message" />
 </LinearLayout>
-<!-- From: file:/D:/Development/AndroidStudioProjects/COMP%207481/project-maelstrom/wifi-direct-demo-master1/app/src/main/res/layout/device_list.xml -->
+<!-- From: file:/C:/Users/A00801942/Documents/GitHub/project-maelstrom/wifi-direct-demo-master1/app/src/main/res/layout/device_list.xml -->

@@ -24,7 +24,9 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.TextView;
 
 /**
  * A BroadcastReceiver that notifies of important wifi p2p events.
@@ -34,6 +36,11 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
     private WifiP2pManager manager;
     private Channel channel;
     private WiFiDirectActivity activity;
+
+    long start;
+    long finish;
+
+    private MyChronometer chronometer;
 
     /**
      * @param manager WifiP2pManager system service
@@ -46,6 +53,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         this.manager = manager;
         this.channel = channel;
         this.activity = activity;
+
     }
 
     /*
@@ -78,7 +86,15 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 manager.requestPeers(channel, (PeerListListener) activity.getFragmentManager()
                         .findFragmentById(R.id.frag_list));
             }
+            start = activity.getStartTime();
+            finish = SystemClock.currentThreadTimeMillis();
+
+
             Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
+            Log.i(WiFiDirectActivity.TAG, "Time Finished: " + finish);
+            Log.i(WiFiDirectActivity.TAG, "[P2P-CHANGED] Time Difference: " + (finish-start));
+            activity.tvTimer.setText((finish-start) + " ms");
+
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
 
             if (manager == null) {
@@ -96,6 +112,15 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 DeviceDetailFragment fragment = (DeviceDetailFragment) activity
                         .getFragmentManager().findFragmentById(R.id.frag_detail);
                 manager.requestConnectionInfo(channel, fragment);
+
+                start = activity.getStartTime();
+                finish = SystemClock.currentThreadTimeMillis();
+
+                Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
+                Log.i(WiFiDirectActivity.TAG, "Time Finished: " + finish);
+                Log.i(WiFiDirectActivity.TAG, "[P2P-CONNECTED] Time Difference: " + (finish-start));
+                activity.tvTimer.setText((finish-start) + " ms");
+
             } else {
                 // It's a disconnect
                 activity.resetData();
