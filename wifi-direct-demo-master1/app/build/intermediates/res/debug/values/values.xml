@@ -24,5 +24,6 @@
     <string name="label_peers">PEERS</string>
     <string name="no">no</string>
     <string name="p2p_off_warning">Enable P2P from action bar button above or system settings</string>
+    <string name="timerLabel">Timer (ms):</string>
     <string name="yes">yes</string>
 </resources>

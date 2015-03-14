@@ -152,7 +152,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                     return true;
                 }
 
-                start = SystemClock.currentThreadTimeMillis();
+                start = System.currentTimeMillis();
                 Log.i(TAG, "Time Start: " + start);
 
                 final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
@@ -188,7 +188,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
     @Override
     public void connect(WifiP2pConfig config) {
-        start = SystemClock.currentThreadTimeMillis();
+        start = System.currentTimeMillis();
         Log.i(TAG, "Time Start: " + start);
 
         manager.connect(channel, config, new ActionListener() {

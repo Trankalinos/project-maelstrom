@@ -87,7 +87,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                         .findFragmentById(R.id.frag_list));
             }
             start = activity.getStartTime();
-            finish = SystemClock.currentThreadTimeMillis();
+            finish = System.currentTimeMillis();
 
 
             Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
@@ -114,7 +114,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 manager.requestConnectionInfo(channel, fragment);
 
                 start = activity.getStartTime();
-                finish = SystemClock.currentThreadTimeMillis();
+                finish = System.currentTimeMillis();
 
                 Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
                 Log.i(WiFiDirectActivity.TAG, "Time Finished: " + finish);
